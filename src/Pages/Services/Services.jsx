@@ -283,9 +283,9 @@ function ServiceCard({ service, index }) {
           >
             {service.badge}
           </span>
-          <span className="text-slate-200 text-4xl font-black select-none">
+          {/* <span className="text-slate-200 text-4xl font-black select-none">
             {String(index + 1).padStart(2, "0")}
-          </span>
+          </span> */}
         </div>
 
         {/* Icon */}
@@ -507,9 +507,7 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        
-
-       
+      
       </div>
     </section>
   );

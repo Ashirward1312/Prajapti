@@ -1,323 +1,20 @@
-// // src/components/HeroSection.jsx
-// import { useEffect, useMemo, useState } from "react";
-
-// import bg from "../img/hero.jpg";
-// import img1 from "../img/h1.png";
-// import img2 from "../img/h2.png";
-// import img3 from "../img/h3.png";
-
-// export default function HeroSection() {
-//   const slideData = useMemo(
-//     () => [
-//       {
-//         src: img1,
-//         label: "Installation",
-//         title: "RO Installation",
-//         desc: "New purifier setup with proper fitting & demo.",
-//       },
-//       {
-//         src: img2,
-//         label: "Service",
-//         title: "RO Repair & Service",
-//         desc: "Filter change, low flow, leakage, noise issues.",
-//       },
-//       {
-//         src: img3,
-//         label: "Best Purifier",
-//         title: "Best Purifier Suggestion",
-//         desc: "Right model selection as per water TDS & usage.",
-//       },
-//     ],
-//     []
-//   );
-
-//   const SLIDE_MS = 4000;
-
-//   const [active, setActive] = useState(0);
-//   const [loaded, setLoaded] = useState(false);
-
-//   useEffect(() => setLoaded(true), []);
-
-//   useEffect(() => {
-//     const id = setInterval(() => {
-//       setActive((p) => (p + 1) % slideData.length);
-//     }, SLIDE_MS);
-//     return () => clearInterval(id);
-//   }, [slideData.length]);
-
-//   return (
-//     <section className="relative min-h-screen w-full overflow-hidden bg-slate-950">
-//       {/* Background */}
-//       <img
-//         src={bg}
-//         alt="Water purifier background"
-//         className="absolute inset-0 h-full w-full object-cover object-center animate-[slowZoom_25s_ease-in-out_infinite]"
-//       />
-
-//       {/* Overlays */}
-//       <div className="absolute inset-0 bg-slate-950/60 sm:bg-slate-950/75" />
-//       <div className="absolute inset-0 bg-gradient-to-r from-transparent sm:from-slate-950 via-slate-950/80 to-slate-950/30" />
-//       <div className="absolute inset-0 bg-gradient-to-t from-transparent sm:from-slate-950 via-transparent to-slate-950/50" />
-
-//       {/* Glow Orbs */}
-//       <div className="hidden md:block pointer-events-none absolute left-10 top-1/4 h-96 w-96 rounded-full bg-sky-500/15 blur-[150px] animate-[float_8s_ease-in-out_infinite]" />
-//       <div className="hidden md:block pointer-events-none absolute bottom-1/4 right-10 h-80 w-80 rounded-full bg-cyan-400/15 blur-[130px] animate-[float_10s_ease-in-out_infinite_reverse]" />
-
-//       {/* Floating Particles */}
-//       <div className="pointer-events-none hidden sm:block" aria-hidden="true">
-//         {[...Array(10)].map((_, i) => (
-//           <div
-//             key={i}
-//             className="absolute bottom-0 h-1 w-1 rounded-full bg-sky-400/35 animate-[rise_var(--dur)_linear_infinite]"
-//             style={{
-//               left: `${8 + i * 9}%`,
-//               "--dur": `${10 + (i % 5) * 2}s`,
-//               animationDelay: `${i * 0.7}s`,
-//             }}
-//           />
-//         ))}
-//       </div>
-
-//       {/* Grid Pattern */}
-//       <div
-//         className="hidden sm:block absolute inset-0 opacity-[0.03]"
-//         aria-hidden="true"
-//         style={{
-//           backgroundImage:
-//             "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
-//           backgroundSize: "60px 60px",
-//         }}
-//       />
-
-//       {/* Main Content */}
-//       <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-4 sm:px-6 py-8 sm:py-14">
-//         <div className="grid w-full items-center gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-16">
-//           {/* LEFT */}
-//           <div
-//             className={[
-//               "transition-all duration-700 delay-150",
-//               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
-//             ].join(" ")}
-//           >
-//             {/* Badge */}
-//             <div className="inline-flex items-center gap-2.5 rounded-full border border-sky-400/20 bg-gradient-to-r from-sky-500/10 to-cyan-500/10 px-5 py-2.5 backdrop-blur-2xl">
-//               <span className="relative flex h-2.5 w-2.5">
-//                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75" />
-//                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-sky-400" />
-//               </span>
-//               <span className="text-sm font-medium tracking-wide text-sky-300">
-//                 Trusted RO Service in Raipur
-//               </span>
-//             </div>
-
-//             {/* Heading */}
-//             <h1 className="mt-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
-//               Water Purifier
-//               <span className="mt-2 block bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400 bg-[length:200%_100%] bg-clip-text text-transparent animate-[shimmer_3s_linear_infinite]">
-//                 Repair Experts
-//               </span>
-//             </h1>
-//             <p className="mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-slate-300">
-//               RO repair, installation & maintenance with{" "}
-//               <span className="font-medium text-sky-400">
-//                 fast doorstep support
-//               </span>{" "}
-//               and genuine spare parts.
-//             </p>
-
-//             <p className="mt-4 text-sm text-sky-300/80">Fast same-day service • Genuine parts • Certified technicians</p>
-
-//             {/* Active Slide Info */}
-//             <div className="mt-6 relative min-h-[92px]">
-//               {slideData.map((s, i) => (
-//                 <div
-//                   key={s.title}
-//                   className={[
-//                     "transition-all duration-700 ease-out",
-//                     active === i
-//                       ? "opacity-100 translate-y-0"
-//                       : "absolute inset-0 opacity-0 translate-y-3 pointer-events-none",
-//                   ].join(" ")}
-//                 >
-//                   <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur-2xl">
-//                     <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/10 to-transparent" />
-//                     <div className="pointer-events-none absolute -left-10 -top-10 h-32 w-32 rounded-full bg-sky-400/10 blur-[40px]" />
-
-//                     <div className="relative flex items-start gap-4">
-//                       <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-sky-400/20 bg-gradient-to-br from-sky-500/20 to-cyan-400/10">
-//                         <div className="h-2.5 w-2.5 rounded-full bg-sky-400 shadow-[0_0_18px_rgba(56,189,248,0.65)]" />
-//                       </div>
-
-//                       <div className="min-w-0">
-//                         <div className="flex flex-wrap items-center gap-2">
-//                           <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-300/90">
-//                             {s.label}
-//                           </span>
-//                           <span className="h-px w-6 bg-white/15" />
-//                           <span className="text-sm font-semibold text-white">
-//                             {s.title}
-//                           </span>
-//                         </div>
-//                         <p className="mt-1 text-xs leading-relaxed text-slate-400">
-//                           {s.desc}
-//                         </p>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-
-//             {/* CTA */}
-//             <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-//               <a
-//                 href="tel:+919876543210"
-//                 className="group relative inline-flex w-full sm:w-auto justify-center items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-500 px-6 py-3 sm:px-8 sm:py-4 font-semibold text-white shadow-lg shadow-sky-500/25 transition-all duration-300 hover:from-sky-400 hover:to-cyan-400 hover:shadow-sky-500/40 hover:scale-[1.02] active:scale-[0.98]"
-//               >
-//                 <span className="pointer-events-none absolute inset-0 translate-x-[-200%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-[200%]" />
-//                 <span className="relative inline-flex items-center gap-3">
-//                   <svg
-//                     className="h-5 w-5 animate-[ring_2s_ease-in-out_infinite]"
-//                     fill="none"
-//                     stroke="currentColor"
-//                     viewBox="0 0 24 24"
-//                   >
-//                     <path
-//                       strokeLinecap="round"
-//                       strokeLinejoin="round"
-//                       strokeWidth={2}
-//                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-//                     />
-//                   </svg>
-//                   Call Now
-//                 </span>
-//               </a>
-
-//               <a
-//                 href="#services"
-//                 className="group inline-flex w-full sm:w-auto items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 sm:px-8 sm:py-4 font-semibold text-white backdrop-blur-xl transition-all duration-300 hover:border-sky-400/30 hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98]"
-//               >
-//                 Our Services
-//                 <svg
-//                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-//                   fill="none"
-//                   stroke="currentColor"
-//                   viewBox="0 0 24 24"
-//                 >
-//                   <path
-//                     strokeLinecap="round"
-//                     strokeLinejoin="round"
-//                     strokeWidth={2}
-//                     d="M17 8l4 4m0 0l-4 4m4-4H3"
-//                   />
-//                 </svg>
-//               </a>
-//             </div>
-//           </div>
-
-//           {/* RIGHT — Clean Image Only Card (Slightly Smaller) */}
-//           <div
-//             className={[
-//               "flex justify-center lg:justify-end transition-all duration-700 delay-200",
-//               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
-//             ].join(" ")}
-//           >
-//             <div className="relative w-full max-w-[420px] sm:max-w-sm lg:max-w-md">
-//               {/* Premium Frame */}
-//               <div className="relative rounded-[2.25rem] bg-gradient-to-b from-white/20 via-white/10 to-white/0 p-[1px] shadow-[0_30px_110px_-45px_rgba(0,0,0,0.95)]">
-//                 <div className="relative overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/5 backdrop-blur-2xl">
-//                   {/* Highlights */}
-//                   <div className="pointer-events-none absolute -left-20 -top-20 h-60 w-60 rounded-full bg-sky-400/12 blur-[70px]" />
-//                   <div className="pointer-events-none absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-cyan-300/10 blur-[80px]" />
-
-//                   {/* Image stage — clean, no bottom content */}
-//                   <div className="relative aspect-[4/5] sm:aspect-[3/4] w-full overflow-hidden hover:scale-[1.02] transition-transform duration-300">
-//                     {/* light sweep */}
-//                     <div className="pointer-events-none absolute inset-0 opacity-60 animate-[sweep_4.6s_ease-in-out_infinite] [background:linear-gradient(120deg,transparent,rgba(255,255,255,0.10),transparent)]" />
-
-//                     {slideData.map((s, i) => (
-//                       <img
-//                         key={s.title}
-//                         src={s.src}
-//                         alt={s.title}
-//                         className={[
-//                           "absolute inset-0 h-full w-full object-contain p-6",
-//                           "transition-all duration-[700ms] ease-out",
-//                           active === i
-//                             ? "opacity-100 scale-100 translate-y-0"
-//                             : "opacity-0 scale-95 translate-y-6",
-//                         ].join(" ")}
-//                         loading={i === 0 ? "eager" : "lazy"}
-//                       />
-//                     ))}
-
-//                     {/* subtle bottom fade */}
-//                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/50 to-transparent" />
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* Badge */}
-//               <div className="absolute -right-2 -top-2 z-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 px-3 py-1.5 text-xs sm:text-sm font-bold text-white shadow-lg shadow-amber-500/30">
-//                 ⭐ Top Rated
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Bottom fade */}
-//       <div className="absolute bottom-0 left-0 right-0 z-10 h-32 bg-gradient-to-t from-slate-950 to-transparent" />
-
-//       {/* Animations */}
-//       <style>{`
-//         @keyframes slowZoom { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
-//         @keyframes float {
-//           0%,100%{transform:translateY(0) translateX(0)}
-//           25%{transform:translateY(-20px) translateX(10px)}
-//           50%{transform:translateY(-10px) translateX(-10px)}
-//           75%{transform:translateY(-30px) translateX(5px)}
-//         }
-//         @keyframes rise {
-//           0%{transform:translateY(0) scale(0);opacity:0}
-//           10%{opacity:1;transform:translateY(-10vh) scale(1)}
-//           100%{transform:translateY(-110vh) scale(.6);opacity:0}
-//         }
-//         @keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
-//         @keyframes ring {
-//           0%,100%{transform:rotate(0deg)}
-//           10%{transform:rotate(15deg)}
-//           20%{transform:rotate(-10deg)}
-//           30%{transform:rotate(5deg)}
-//           40%{transform:rotate(0deg)}
-//         }
-//         @keyframes sweep {
-//           0%{transform:translateX(-120%)}
-//           60%{transform:translateX(120%)}
-//           100%{transform:translateX(120%)}
-//         }
-//         @keyframes progress {
-//           from { transform: scaleX(0); }
-//           to { transform: scaleX(1); }
-//         }
-//         @media (prefers-reduced-motion: reduce) {
-//           * { animation: none !important; transition: none !important; }
-//         }
-//       `}</style>
-//     </section>
-//   );
-// }
-import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+// src/components/HeroSection.jsx
+import {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo,
+  useLayoutEffect,
+} from "react";
 import gsap from "gsap";
+
 import img1 from "../img/bg1.png";
 import img2 from "../img/bg2.png";
 import img3 from "../img/bg3.png";
 import img4 from "../img/bg4.png";
 import img5 from "../img/bg5.png";
 
-/* ──────────────────────────────────────────────────────
-   SLIDES DATA
-   ────────────────────────────────────────────────────── */
 const SLIDES = [
   {
     id: 1,
@@ -411,24 +108,53 @@ const SLIDES = [
   },
 ];
 
-/* ──────────────────────────────────────────────────────
-   AMBIENT BUBBLES (CSS-only background)
-   ────────────────────────────────────────────────────── */
-const Bubbles = () => {
+function useMediaQuery(query, initial = false) {
+  const [matches, setMatches] = useState(() => {
+    if (typeof window === "undefined") return initial;
+    return window.matchMedia(query).matches;
+  });
+
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const onChange = (e) => setMatches(e.matches);
+
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else mq.addListener(onChange);
+
+    setMatches(mq.matches);
+
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
+      else mq.removeListener(onChange);
+    };
+  }, [query]);
+
+  return matches;
+}
+
+/**
+ * Bubbles: desktop pe zyada, mobile pe off
+ * (desktop view "rich" + mobile smooth)
+ */
+const Bubbles = ({ enabled, count = 18, intensity = 1 }) => {
   const bubbles = useMemo(
     () =>
-      Array.from({ length: 14 }, (_, i) => ({
+      Array.from({ length: count }, (_, i) => ({
         id: i,
-        size: Math.random() * 14 + 4,
+        size: Math.random() * 18 + 6,
         left: Math.random() * 100,
-        delay: Math.random() * 15,
-        dur: Math.random() * 12 + 10,
+        delay: Math.random() * 14,
+        dur: Math.random() * 11 + 10,
+        blur: Math.random() * 2,
+        alpha: (Math.random() * 0.12 + 0.1) * intensity,
       })),
-    []
+    [count, intensity]
   );
 
+  if (!enabled) return null;
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
       {bubbles.map((b) => (
         <div
           key={b.id}
@@ -437,10 +163,10 @@ const Bubbles = () => {
             width: b.size,
             height: b.size,
             left: `${b.left}%`,
-            bottom: "-3%",
-            background:
-              "radial-gradient(circle at 30% 30%, rgba(56,189,248,0.2), rgba(56,189,248,0.02))",
-            border: "1px solid rgba(56,189,248,0.05)",
+            bottom: "-6%",
+            filter: `blur(${b.blur}px)`,
+            background: `radial-gradient(circle at 30% 30%, rgba(56,189,248,${b.alpha}), rgba(56,189,248,0.012))`,
+            border: "1px solid rgba(56,189,248,0.08)",
             animation: `bubbleFloat ${b.dur}s ease-in infinite ${b.delay}s`,
           }}
         />
@@ -449,205 +175,245 @@ const Bubbles = () => {
   );
 };
 
-/* ──────────────────────────────────────────────────────
-   MAIN HERO COMPONENT
-   ────────────────────────────────────────────────────── */
-export default function App() {
+export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  /* Refs */
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+
+  const rootRef = useRef(null);
   const imageContainerRef = useRef(null);
   const floatRef = useRef(null);
   const textContainerRef = useRef(null);
   const progressRef = useRef(null);
   const timelineRef = useRef(null);
-  const glowRef = useRef(null);
 
   const cur = SLIDES[currentIndex];
 
-  /* ── Auto-advance to next slide ── */
+  // preload (jank kam)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    SLIDES.forEach((s) => {
+      const im = new Image();
+      im.src = s.image;
+    });
+  }, []);
+
   const handleAutoNext = useCallback(() => {
     setCurrentIndex((p) => (p + 1) % SLIDES.length);
   }, []);
 
-  /* ── Manual navigation ── */
   const goToPrev = useCallback(() => {
-    if (timelineRef.current) timelineRef.current.kill();
+    timelineRef.current?.kill();
+    timelineRef.current = null;
     setCurrentIndex((p) => (p - 1 + SLIDES.length) % SLIDES.length);
   }, []);
 
   const goToNext = useCallback(() => {
-    if (timelineRef.current) timelineRef.current.kill();
+    timelineRef.current?.kill();
+    timelineRef.current = null;
     setCurrentIndex((p) => (p + 1) % SLIDES.length);
   }, []);
 
   const goTo = useCallback((i) => {
-    if (timelineRef.current) timelineRef.current.kill();
+    timelineRef.current?.kill();
+    timelineRef.current = null;
     setCurrentIndex(i);
   }, []);
 
-  /* ──────────────────────────────────
-     GSAP ANIMATION ENGINE
-     ────────────────────────────────── */
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (!rootRef.current) return;
+
+    if (prefersReducedMotion) {
+      timelineRef.current?.kill();
+      timelineRef.current = null;
+      gsap.set([imageContainerRef.current, textContainerRef.current], {
+        clearProps: "all",
+        opacity: 1,
+      });
+      gsap.set(progressRef.current, { clearProps: "all", scaleX: 1 });
+      return;
+    }
+
+    timelineRef.current?.kill();
+    timelineRef.current = null;
+    gsap.killTweensOf([
+      imageContainerRef.current,
+      floatRef.current,
+      progressRef.current,
+    ]);
+
     const ctx = gsap.context(() => {
-      const textEls =
-        textContainerRef.current?.querySelectorAll(".anim-item");
+      const textEls = textContainerRef.current?.querySelectorAll(".anim-item");
+      const mm = gsap.matchMedia();
 
-      /* Set initial states */
-      gsap.set(imageContainerRef.current, {
-        xPercent: -140,
-        scale: 0.78,
-        opacity: 0,
-        rotation: -2,
-      });
-      if (textEls?.length) {
-        gsap.set(textEls, { y: 28, opacity: 0 });
-      }
-      gsap.set(progressRef.current, {
-        scaleX: 0,
-        transformOrigin: "left center",
+      gsap.set([imageContainerRef.current, textContainerRef.current], {
+        force3D: true,
       });
 
-      /* Continuous float on the image */
-      gsap.to(floatRef.current, {
-        y: -16,
-        duration: 2.4,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
+      // Mobile: super smooth simple
+      mm.add("(max-width: 768px)", () => {
+        gsap.set(imageContainerRef.current, { y: 14, scale: 0.99, opacity: 0 });
+        if (textEls?.length) gsap.set(textEls, { y: 12, opacity: 0 });
+        gsap.set(progressRef.current, { scaleX: 0, transformOrigin: "left" });
 
-      /* ── Main Timeline ── */
-      const tl = gsap.timeline({
-        delay: 0.05,
-        onComplete: handleAutoNext,
-      });
-
-      /* ENTER — Image slides in from left */
-      tl.to(
-        imageContainerRef.current,
-        {
-          xPercent: 0,
-          scale: 1,
-          opacity: 1,
-          rotation: 0,
-          duration: 1,
-          ease: "power3.out",
-        },
-        0
-      );
-
-      /* ENTER — Text staggers in */
-      if (textEls?.length) {
-        tl.to(
-          textEls,
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.55,
-            stagger: 0.09,
-            ease: "power2.out",
-          },
-          0.25
-        );
-      }
-
-      /* HOLD — Pause in center (3 seconds) */
-      tl.to({}, { duration: 3 });
-
-      /* EXIT — Text fades out */
-      if (textEls?.length) {
-        tl.to(textEls, {
-          y: -18,
-          opacity: 0,
-          duration: 0.35,
-          stagger: 0.04,
-          ease: "power2.in",
+        const tl = gsap.timeline({
+          delay: 0.05,
+          onComplete: handleAutoNext,
+          defaults: { ease: "power2.out" },
         });
-      }
 
-      /* EXIT — Image slides out to right */
-      tl.to(
-        imageContainerRef.current,
-        {
-          xPercent: 140,
-          scale: 0.78,
-          opacity: 0,
-          rotation: 2,
-          duration: 1,
-          ease: "power3.in",
-        },
-        "-=0.25"
-      );
+        tl.to(imageContainerRef.current, { y: 0, opacity: 1, duration: 0.5 }, 0);
 
-      /* Progress bar — synced to total duration */
-      gsap.to(progressRef.current, {
-        scaleX: 1,
-        duration: tl.totalDuration(),
-        ease: "none",
+        if (textEls?.length) {
+          tl.to(textEls, { y: 0, opacity: 1, duration: 0.38, stagger: 0.06 }, 0.08);
+        }
+
+        tl.to({}, { duration: 2.15 });
+
+        if (textEls?.length) {
+          tl.to(
+            textEls,
+            { y: -8, opacity: 0, duration: 0.22, stagger: 0.03, ease: "power2.in" },
+            "out"
+          );
+        }
+        tl.to(
+          imageContainerRef.current,
+          { y: -10, opacity: 0, duration: 0.3, ease: "power2.in" },
+          "out"
+        );
+
+        gsap.to(progressRef.current, {
+          scaleX: 1,
+          duration: tl.totalDuration(),
+          ease: "none",
+        });
+
+        timelineRef.current = tl;
       });
 
-      timelineRef.current = tl;
-    });
+      // Desktop/Tablet: proper slide animation
+      mm.add("(min-width: 769px)", () => {
+        gsap.set(imageContainerRef.current, {
+          xPercent: -120, // little less extreme => better desktop look
+          scale: 0.88,
+          opacity: 0,
+          rotation: -1.5,
+        });
+
+        if (textEls?.length) gsap.set(textEls, { y: 18, opacity: 0 });
+        gsap.set(progressRef.current, { scaleX: 0, transformOrigin: "left" });
+
+        if (floatRef.current) {
+          gsap.to(floatRef.current, {
+            y: -12,
+            duration: 2.6,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+          });
+        }
+
+        const tl = gsap.timeline({
+          delay: 0.05,
+          onComplete: handleAutoNext,
+          defaults: { ease: "power3.out" },
+        });
+
+        tl.to(
+          imageContainerRef.current,
+          { xPercent: 0, scale: 1, opacity: 1, rotation: 0, duration: 0.9 },
+          0
+        );
+
+        if (textEls?.length) {
+          tl.to(textEls, { y: 0, opacity: 1, duration: 0.48, stagger: 0.075, ease: "power2.out" }, 0.18);
+        }
+
+        tl.to({}, { duration: 2.55 });
+
+        if (textEls?.length) {
+          tl.to(textEls, { y: -14, opacity: 0, duration: 0.3, stagger: 0.03, ease: "power2.in" }, "out");
+        }
+
+        tl.to(
+          imageContainerRef.current,
+          { xPercent: 120, scale: 0.88, opacity: 0, rotation: 1.5, duration: 0.9, ease: "power3.in" },
+          "out-=0.12"
+        );
+
+        gsap.to(progressRef.current, {
+          scaleX: 1,
+          duration: tl.totalDuration(),
+          ease: "none",
+        });
+
+        timelineRef.current = tl;
+      });
+
+      return () => mm.revert();
+    }, rootRef);
 
     return () => ctx.revert();
-  }, [currentIndex, handleAutoNext]);
+  }, [currentIndex, handleAutoNext, prefersReducedMotion]);
 
-  /* ──────────────────────────────────
-     RENDER
-     ────────────────────────────────── */
   return (
-    <section className="relative min-h-screen w-full bg-gradient-to-br from-[#020617] via-[#0a192f] to-[#0c2d48] overflow-hidden font-sans select-none">
-      {/* ═══ Background Layers ═══ */}
-      <Bubbles />
+    <section
+      ref={rootRef}
+      id="home"
+      className="
+        relative w-full overflow-hidden font-sans select-none box-border
+        min-h-screen
+        bg-gradient-to-br from-[#020617] via-[#0a192f] to-[#0c2d48]
+        pt-[78px] sm:pt-[86px] lg:pt-[96px]
+      "
+    >
+      {/* Desktop pe zyada bubbles */}
+      <Bubbles
+        enabled={!isMobile && !prefersReducedMotion}
+        count={isDesktop ? 30 : 18}
+        intensity={isDesktop ? 1.35 : 1}
+      />
 
-      {/* Ambient gradient orbs */}
+      {/* Glows */}
       <div
-        ref={glowRef}
-        className="absolute top-0 -left-40 w-[600px] h-[600px] rounded-full blur-[160px] pointer-events-none transition-all duration-[2s]"
+        className="absolute top-0 -left-40 w-[240px] h-[240px] sm:w-[380px] sm:h-[380px] lg:w-[520px] lg:h-[520px] rounded-full blur-[90px] sm:blur-[120px] lg:blur-[150px] pointer-events-none transition-all duration-[2s]"
         style={{ backgroundColor: cur.glowColor }}
       />
       <div
-        className="absolute bottom-0 -right-24 w-[480px] h-[480px] rounded-full blur-[140px] pointer-events-none transition-all duration-[2s]"
-        style={{ backgroundColor: cur.glowColor, opacity: 0.4 }}
+        className="absolute bottom-0 -right-24 w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] lg:w-[430px] lg:h-[430px] rounded-full blur-[85px] sm:blur-[115px] lg:blur-[135px] pointer-events-none transition-all duration-[2s]"
+        style={{ backgroundColor: cur.glowColor, opacity: 0.3 }}
       />
 
-      {/* Dot grid */}
+      {/* Subtle grid */}
       <div
-        className="absolute inset-0 opacity-[0.015] pointer-events-none"
+        className="absolute inset-0 opacity-[0.012] pointer-events-none"
         style={{
           backgroundImage:
             "radial-gradient(circle, rgba(148,163,184,1) 1px, transparent 1px)",
-          backgroundSize: "50px 50px",
+          backgroundSize: "52px 52px",
         }}
       />
 
-      {/* ═══ Main Content ═══ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-14 flex items-center min-h-screen py-10">
-        <div className="w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-8">
-          {/* ──────────────────────────
-             LEFT — Text Content
-             ────────────────────────── */}
+      {/* Main */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-14">
+        {/* removed double min-height; now spacing is clean on desktop */}
+        <div className="py-6 sm:py-10 lg:py-12 grid items-center gap-8 lg:gap-10 lg:grid-cols-12">
+          {/* TEXT */}
           <div
             ref={textContainerRef}
-            className="w-full lg:w-[44%] text-center lg:text-left flex-shrink-0"
+            className="lg:col-span-5 text-center lg:text-left"
           >
-            {/* Premium Badge */}
-            <div className="anim-item">
-              <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.04] backdrop-blur-xl border border-white/[0.07]">
-                <span className="relative flex h-2 w-2">
-                  <span
-                    className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
-                    style={{ backgroundColor: cur.accentColor }}
-                  />
-                  <span
-                    className="relative inline-flex rounded-full h-2 w-2"
-                    style={{ backgroundColor: cur.accentColor }}
-                  />
-                </span>
+            <div className="anim-item flex justify-center lg:justify-start">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] backdrop-blur-xl border border-white/[0.07]">
                 <span
-                  className="text-[11px] sm:text-xs font-semibold tracking-[2px] uppercase"
+                  className="inline-flex h-1.5 w-1.5 rounded-full"
+                  style={{ backgroundColor: cur.accentColor }}
+                />
+                <span
+                  className="text-[10px] font-semibold tracking-[2px] uppercase"
                   style={{ color: cur.accentLight }}
                 >
                   {cur.badge}
@@ -655,8 +421,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Heading */}
-            <h1 className="anim-item mt-6 text-[2.5rem] sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-black text-white leading-[1.06] tracking-tight">
+            <h1 className="anim-item mt-3 sm:mt-4 text-[1.55rem] sm:text-[2.1rem] md:text-[2.45rem] lg:text-[2.85rem] xl:text-[3.15rem] font-black text-white leading-[1.08] tracking-tight">
               {cur.heading}
               <br />
               <span
@@ -669,27 +434,24 @@ export default function App() {
               </span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="anim-item mt-4 sm:mt-5 text-blue-200/35 text-sm sm:text-[15px] leading-relaxed max-w-lg mx-auto lg:mx-0">
+            <p className="anim-item mt-3 text-slate-200/55 text-[12px] sm:text-[13px] lg:text-[14px] leading-relaxed max-w-md mx-auto lg:mx-0">
               {cur.subtitle}
             </p>
 
-            {/* Divider */}
-            <div className="anim-item mt-6 mb-5 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent max-w-md mx-auto lg:mx-0" />
+            <div className="anim-item mt-4 mb-4 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent max-w-xs sm:max-w-md mx-auto lg:mx-0" />
 
-            {/* Features List */}
-            <ul className="anim-item space-y-3 max-w-md mx-auto lg:mx-0">
+            <ul className="anim-item space-y-2.5 max-w-md mx-auto lg:mx-0">
               {cur.features.map((f) => (
                 <li
                   key={f}
-                  className="flex items-center gap-3 text-[13px] sm:text-sm text-blue-100/45"
+                  className="flex items-center gap-2.5 text-[11px] sm:text-[12px] lg:text-[13px] text-slate-200/60"
                 >
                   <span
-                    className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: `${cur.accentColor}15` }}
+                    className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: `${cur.accentColor}18` }}
                   >
                     <svg
-                      className="w-3 h-3"
+                      className="w-2.5 h-2.5"
                       style={{ color: cur.accentColor }}
                       fill="none"
                       viewBox="0 0 24 24"
@@ -707,35 +469,24 @@ export default function App() {
                 </li>
               ))}
             </ul>
+
+            {/* CTA removed ✅ */}
           </div>
 
-          {/* ──────────────────────────
-             RIGHT — Sliding Image + Controls
-             ────────────────────────── */}
-          <div className="w-full lg:w-[56%] relative flex flex-col items-center">
-            {/* Glow behind image */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {/* IMAGE + CONTROLS */}
+          <div className="lg:col-span-7 relative flex flex-col items-center">
+            {/* Rings (desktop) */}
+            <div className="absolute inset-0 pointer-events-none hidden lg:block">
               <div
-                className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full blur-[120px] transition-all duration-[2s]"
-                style={{
-                  backgroundColor: cur.glowColor,
-                  animation: "glowPulse 4s ease-in-out infinite",
-                }}
-              />
-            </div>
-
-            {/* Decorative Rings */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div
-                className="absolute top-1/2 left-1/2 w-[260px] h-[260px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] rounded-full border border-dashed opacity-[0.04] transition-colors duration-[2s]"
+                className="absolute top-1/2 left-1/2 w-[380px] h-[380px] rounded-full border border-dashed opacity-[0.045]"
                 style={{
                   borderColor: cur.accentColor,
-                  animation: "ringRotate 50s linear infinite",
+                  animation: "ringRotate 54s linear infinite",
                   transform: "translate(-50%, -50%)",
                 }}
               />
               <div
-                className="absolute top-1/2 left-1/2 w-[180px] h-[180px] sm:w-[260px] sm:h-[260px] lg:w-[300px] lg:h-[300px] rounded-full border opacity-[0.025] transition-colors duration-[2s]"
+                className="absolute top-1/2 left-1/2 w-[270px] h-[270px] rounded-full border opacity-[0.03]"
                 style={{
                   borderColor: cur.accentColor,
                   transform: "translate(-50%, -50%)",
@@ -743,31 +494,36 @@ export default function App() {
               />
             </div>
 
-            {/* ── Image Slide Container ── */}
-            <div className="overflow-hidden relative w-full flex justify-center items-center min-h-[360px] sm:min-h-[420px] lg:min-h-[500px]">
-              <div ref={imageContainerRef} className="will-change-transform">
+            {/* image area height fixed => no ugly empty space */}
+            <div className="relative w-full flex items-center justify-center h-[260px] sm:h-[340px] lg:h-[430px]">
+              <div
+                ref={imageContainerRef}
+                className="will-change-transform transform-gpu"
+              >
                 <div ref={floatRef}>
                   <img
                     src={cur.image}
                     alt={cur.heading}
-                    className="w-52 sm:w-64 md:w-72 lg:w-80 xl:w-96 h-auto object-contain"
+                    className="w-44 sm:w-60 lg:w-[340px] xl:w-[400px] h-auto object-contain"
                     style={{
-                      filter: `drop-shadow(0 30px 50px ${cur.accentColor}18) drop-shadow(0 12px 20px rgba(0,0,0,0.3))`,
+                      filter: isMobile
+                        ? "drop-shadow(0 10px 18px rgba(0,0,0,0.22))"
+                        : `drop-shadow(0 26px 46px ${cur.accentColor}18) drop-shadow(0 12px 22px rgba(0,0,0,0.28))`,
                     }}
                     draggable="false"
+                    loading="eager"
+                    decoding="async"
                   />
                 </div>
               </div>
             </div>
 
-            {/* ── Controls ── */}
-            <div className="mt-3 flex flex-col items-center gap-4 w-full max-w-sm">
-              {/* Arrows + Dots Row */}
-              <div className="flex items-center gap-4">
-                {/* Prev Arrow */}
+            {/* Controls */}
+            <div className="mt-4 flex flex-col items-center gap-3 w-full max-w-sm">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <button
                   onClick={goToPrev}
-                  className="w-10 h-10 rounded-full bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-white/30 hover:text-white hover:bg-white/[0.08] hover:border-white/[0.15] transition-all duration-300 cursor-pointer active:scale-90"
+                  className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-white/35 hover:text-white hover:bg-white/[0.08] hover:border-white/[0.15] transition-all duration-300 cursor-pointer active:scale-90"
                   aria-label="Previous"
                 >
                   <svg
@@ -785,7 +541,6 @@ export default function App() {
                   </svg>
                 </button>
 
-                {/* Dots */}
                 <div className="flex items-center gap-2">
                   {SLIDES.map((s, i) => (
                     <button
@@ -793,14 +548,14 @@ export default function App() {
                       onClick={() => goTo(i)}
                       className={`rounded-full transition-all duration-500 cursor-pointer ${
                         i === currentIndex
-                          ? "w-9 h-2.5 shadow-lg"
-                          : "w-2.5 h-2.5 bg-white/[0.08] hover:bg-white/20"
+                          ? "w-8 h-2 shadow-lg"
+                          : "w-2 h-2 bg-white/[0.08] hover:bg-white/20"
                       }`}
                       style={
                         i === currentIndex
                           ? {
                               background: `linear-gradient(90deg, ${cur.accentColor}, ${cur.accentLight})`,
-                              boxShadow: `0 0 14px ${cur.accentColor}45`,
+                              boxShadow: `0 0 12px ${cur.accentColor}40`,
                             }
                           : {}
                       }
@@ -809,10 +564,9 @@ export default function App() {
                   ))}
                 </div>
 
-                {/* Next Arrow */}
                 <button
                   onClick={goToNext}
-                  className="w-10 h-10 rounded-full bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-white/30 hover:text-white hover:bg-white/[0.08] hover:border-white/[0.15] transition-all duration-300 cursor-pointer active:scale-90"
+                  className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-white/35 hover:text-white hover:bg-white/[0.08] hover:border-white/[0.15] transition-all duration-300 cursor-pointer active:scale-90"
                   aria-label="Next"
                 >
                   <svg
@@ -831,7 +585,6 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Progress Bar */}
               <div className="w-full h-[2px] bg-white/[0.04] rounded-full overflow-hidden">
                 <div
                   ref={progressRef}
@@ -843,8 +596,7 @@ export default function App() {
                 />
               </div>
 
-              {/* Counter */}
-              <span className="text-white/[0.12] text-xs font-mono tracking-[3px]">
+              <span className="text-white/[0.12] text-[10px] font-mono tracking-[3px]">
                 {String(currentIndex + 1).padStart(2, "0")} /{" "}
                 {String(SLIDES.length).padStart(2, "0")}
               </span>
@@ -852,6 +604,21 @@ export default function App() {
           </div>
         </div>
       </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 h-16 sm:h-20 lg:h-24 bg-gradient-to-t from-[#020617] to-transparent pointer-events-none" />
+
+      <style>{`
+        @keyframes bubbleFloat {
+          0% { transform: translateY(0) scale(0); opacity: 0; }
+          10% { opacity: 0.55; transform: translateY(-10vh) scale(1); }
+          100% { transform: translateY(-115vh) scale(0.4); opacity: 0; }
+        }
+        @keyframes ringRotate {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+      `}</style>
     </section>
   );
 }

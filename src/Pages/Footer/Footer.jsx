@@ -87,7 +87,6 @@ export default function Footer() {
   }, []);
 
   return (
-    // ✅ FIX HERE: removed mt-16, added -mt-px to avoid seam line
     <footer className="relative -mt-px overflow-hidden bg-gradient-to-br from-[#020617] via-[#061a30] to-[#0b2b44] text-white">
       {/* Background */}
       <Bubbles enabled={desktop} />
@@ -233,38 +232,33 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom - centered */}
-        <div className="mt-10 pt-6 border-t border-white/10 text-center space-y-2">
-          <p className="text-xs text-slate-400">
-            © {new Date().getFullYear()} All rights reserved to{" "}
-            <span className="text-slate-200 font-semibold">
-              Prajapati Enterprises
-            </span>
-            .
-          </p>
+        {/* ✅ Bottom: MindBridge LEFT, Prajapati RIGHT (Responsive) */}
+        <div className="mt-10 pt-6 border-t border-white/10">
+          <div className="flex flex-col gap-2 text-xs text-slate-400 text-center md:flex-row md:items-center md:justify-between md:text-left">
+            {/* Left */}
+            <p className="md:text-left">
+              Designed &amp; Developed by{" "}
+              <a
+                href={`https://wa.me/${MIND_BRIDGE_WA}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-200 hover:text-white font-semibold transition"
+                title="Chat on WhatsApp"
+              >
+                MindBridge Tech
+              </a>{" "}
+             
+            </p>
 
-          <p className="text-xs text-slate-400">
-            Designed &amp; Developed by{" "}
-            <a
-              href={`https://wa.me/${MIND_BRIDGE_WA}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sky-200 hover:text-white font-semibold transition"
-              title="Chat on WhatsApp"
-            >
-              MindBridge Tech
-            </a>{" "}
-            — WhatsApp:{" "}
-            <a
-              href={`https://wa.me/${MIND_BRIDGE_WA}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sky-200 hover:text-white font-semibold transition"
-              title="Chat on WhatsApp"
-            >
-              {MIND_BRIDGE_DISPLAY}
-            </a>
-          </p>
+            {/* Right */}
+            <p className="md:text-right">
+              © {new Date().getFullYear()} All rights reserved to{" "}
+              <span className="text-slate-200 font-semibold">
+                Prajapati Enterprise
+              </span>
+              .
+            </p>
+          </div>
         </div>
       </div>
 
@@ -301,8 +295,18 @@ export default function Footer() {
 /* Icons */
 function PhoneIcon({ className }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+      />
     </svg>
   );
 }
@@ -316,31 +320,75 @@ function WhatsAppIcon({ className }) {
 }
 function PinIcon({ className }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+      />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+      />
     </svg>
   );
 }
 function ClockIcon({ className }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
     </svg>
   );
 }
 function ArrowUpIcon({ className }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 19V5m0 0l-7 7m7-7l7 7" />
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2.5}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 19V5m0 0l-7 7m7-7l7 7"
+      />
     </svg>
   );
 }
 function ArrowUpRightIcon({ className }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7m0 0H7m10 0v10" />
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2.5}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M7 17L17 7m0 0H7m10 0v10"
+      />
     </svg>
   );
 }

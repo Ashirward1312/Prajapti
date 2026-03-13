@@ -13,7 +13,6 @@ import {
   Sparkles,
   Star,
   Zap,
-  Award,
   CheckCircle2,
   Phone,
   Filter,
@@ -35,8 +34,6 @@ const products = [
     price: "₹13,990",
     originalPrice: "₹18,500",
     image: p1,
-    badge: "Best Seller",
-    badgeColor: "emerald",
     shortDescription:
       "Sleek alkaline RO purifier with premium finish for daily family use.",
     bestUse:
@@ -64,8 +61,6 @@ const products = [
     price: "₹23,990",
     originalPrice: "₹30,000",
     image: p2,
-    badge: "Luxury Pick",
-    badgeColor: "violet",
     shortDescription:
       "Premium self-cooling purifier with matka effect and advanced RO + UV protection.",
     bestUse:
@@ -94,8 +89,6 @@ const products = [
     price: "₹22,990",
     originalPrice: "₹29,500",
     image: p3,
-    badge: "Top Rated",
-    badgeColor: "amber",
     shortDescription:
       "Powerful 7-stage purifier with RO, UF, UV and alkaline enrichment.",
     bestUse:
@@ -117,12 +110,6 @@ const products = [
     reviews: 312,
   },
 ];
-
-const badgeStyles = {
-  emerald: "bg-emerald-500 text-white",
-  violet: "bg-violet-600 text-white",
-  amber: "bg-amber-500 text-white",
-};
 
 const ProductSection = () => {
   const [expandedId, setExpandedId] = useState(null);
@@ -198,16 +185,7 @@ const ProductSection = () => {
                       />
                     </div>
 
-                    <div className="absolute left-3 top-3 sm:left-4 sm:top-4">
-                      <span
-                        className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${
-                          badgeStyles[product.badgeColor]
-                        }`}
-                      >
-                        <Award size={12} />
-                        {product.badge}
-                      </span>
-                    </div>
+                    {/* ✅ Badge removed from here */}
 
                     <div className="absolute right-3 top-3 sm:right-4 sm:top-4">
                       <span className="rounded-lg bg-black/50 px-2 py-1 text-[11px] font-mono font-semibold text-slate-300 backdrop-blur-sm">
@@ -268,10 +246,7 @@ const ProductSection = () => {
                             key={idx}
                             className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs font-medium text-slate-300"
                           >
-                            <CheckCircle2
-                              size={12}
-                              className="text-blue-400"
-                            />
+                            <CheckCircle2 size={12} className="text-blue-400" />
                             {point}
                           </span>
                         ))}
@@ -300,11 +275,7 @@ const ProductSection = () => {
                       >
                         <Info size={16} />
                         {isExpanded ? "Hide Specs" : "View Specs"}
-                        {isExpanded ? (
-                          <ChevronUp size={16} />
-                        ) : (
-                          <ChevronDown size={16} />
-                        )}
+                        {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                       </button>
 
                       <button
@@ -312,9 +283,7 @@ const ProductSection = () => {
                         onClick={() => {
                           const message = `Hi, I have a question about ${product.name} (${product.code}). Can you help?`;
                           window.open(
-                            `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                              message
-                            )}`,
+                            `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
                             "_blank"
                           );
                         }}
@@ -360,9 +329,8 @@ const ProductSection = () => {
                           icon={<Droplets size={20} />}
                           label="Stages"
                           value={
-                            product.quickPoints.find((p) =>
-                              p.includes("Stage")
-                            ) || "Multi-Stage"
+                            product.quickPoints.find((p) => p.includes("Stage")) ||
+                            "Multi-Stage"
                           }
                           color="emerald"
                         />
@@ -451,42 +419,6 @@ const ProductSection = () => {
             );
           })}
         </div>
-
-        {/* Trust Strip */}
-        <div className="mt-14 grid gap-4 sm:grid-cols-3">
-          {[
-            {
-              icon: <ShieldCheck size={22} />,
-              title: "1 Year Warranty",
-              desc: "Complete warranty with free servicing support.",
-            },
-            {
-              icon: <Zap size={22} />,
-              title: "Free Installation",
-              desc: "Expert doorstep installation included with every order.",
-            },
-            {
-              icon: <MessageCircle size={22} />,
-              title: "WhatsApp Support",
-              desc: "Instant order, enquiry, and after-sales help on WhatsApp.",
-            },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="flex items-start gap-4 rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
-            >
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
-                {item.icon}
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">{item.title}</h4>
-                <p className="mt-1 text-xs leading-relaxed text-slate-500">
-                  {item.desc}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Image Lightbox */}
@@ -529,10 +461,7 @@ const specIconBg = {
 };
 
 const SpecCard = ({ icon, label, value, color = "blue" }) => (
-  <div
-    className={`rounded-xl border p-4 ${specColors[color]}`}
-    style={{ backgroundColor: undefined }}
-  >
+  <div className={`rounded-xl border p-4 ${specColors[color]}`}>
     <div
       className={`mb-2 inline-flex h-9 w-9 items-center justify-center rounded-lg ${specIconBg[color]}`}
     >

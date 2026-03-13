@@ -4,7 +4,7 @@ import logo from "../img/logo.png";
 import aboutImg1 from "../img/h1.png";
 import aboutImg2 from "../img/h2.png";
 
-/* ───── counter ───── */
+/* ───���─ counter ───── */
 function useCounter(target, run, duration = 2000) {
   const [count, setCount] = useState(0);
 
@@ -92,8 +92,16 @@ const Icons = {
         strokeLinejoin="round"
         d="M7 4h10v5a5 5 0 0 1-10 0V4z"
       />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M7 6H5a2 2 0 0 0 2 4" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M17 6h2a2 2 0 0 1-2 4" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M7 6H5a2 2 0 0 0 2 4"
+      />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M17 6h2a2 2 0 0 1-2 4"
+      />
     </svg>
   ),
   tag: (
@@ -222,7 +230,15 @@ export default function AboutSection() {
     <section
       id="about"
       ref={ref}
-      className="relative overflow-hidden bg-[#040A16] py-16 sm:py-20 md:py-28 lg:py-36"
+      // ✅ Header se chipakna band:
+      // - Top padding increased so content stays comfortably below fixed header
+      // - scroll-margin-top added so anchor scroll also stops a bit lower
+      className="relative overflow-hidden bg-[#040A16]
+                 pt-[110px] pb-16
+                 sm:pt-[120px] sm:pb-20
+                 md:pt-[140px] md:pb-28
+                 lg:pt-[160px] lg:pb-36
+                 scroll-mt-[110px] sm:scroll-mt-[120px] lg:scroll-mt-[140px]"
     >
       {/* ── premium background ── */}
       <div className="absolute inset-0 pointer-events-none">
@@ -327,7 +343,9 @@ export default function AboutSection() {
                       <p className="text-xs font-semibold text-white sm:text-sm">
                         Quality Service
                       </p>
-                      <p className="text-[10px] text-slate-400 sm:text-xs">Since 2009</p>
+                      <p className="text-[10px] text-slate-400 sm:text-xs">
+                        Since 2009
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -348,39 +366,42 @@ export default function AboutSection() {
               </h3>
               <p className="mb-4 text-sm leading-relaxed text-slate-400 sm:mb-6 sm:text-base">
                 At <BrandName />, we believe every family deserves access to clean,
-                safe drinking water. Our team of certified technicians brings years of
-                expertise to ensure your water purifier works flawlessly.
+                safe drinking water. Our team of certified technicians brings years
+                of expertise to ensure your water purifier works flawlessly.
               </p>
               <p className="mb-6 text-sm leading-relaxed text-slate-400 sm:mb-8 sm:text-base">
-                From installation to maintenance, we provide comprehensive RO services
-                with genuine parts and transparent pricing.
+                From installation to maintenance, we provide comprehensive RO
+                services with genuine parts and transparent pricing.
               </p>
 
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                {["Expert Technicians", "Genuine Parts", "Same Day Service", "All Brands"].map(
-                  (item, i) => (
-                    <div key={i} className="flex items-center gap-2 sm:gap-3">
-                      <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/20 sm:h-6 sm:w-6">
-                        <svg
-                          className="h-3 w-3 text-emerald-400 sm:h-3.5 sm:w-3.5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={3}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </div>
-                      <span className="text-xs font-medium text-slate-300 sm:text-sm">
-                        {item}
-                      </span>
+                {[
+                  "Expert Technicians",
+                  "Genuine Parts",
+                  "Same Day Service",
+                  "All Brands",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 sm:gap-3">
+                    <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/20 sm:h-6 sm:w-6">
+                      <svg
+                        className="h-3 w-3 text-emerald-400 sm:h-3.5 sm:w-3.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={3}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
                     </div>
-                  )
-                )}
+                    <span className="text-xs font-medium text-slate-300 sm:text-sm">
+                      {item}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -458,7 +479,11 @@ export default function AboutSection() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-400/20 bg-emerald-500/[0.06] px-5 py-2.5 text-sm font-semibold text-emerald-300 transition-all duration-300 sm:px-6 sm:py-3"
                     >
-                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                      <svg
+                        className="h-4 w-4"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" />
                       </svg>
                       WhatsApp
@@ -542,8 +567,12 @@ export default function AboutSection() {
                   { num: "50+", label: "Brands" },
                 ].map((item, i) => (
                   <div key={i} className="text-center">
-                    <p className="text-2xl font-bold text-white sm:text-3xl">{item.num}</p>
-                    <p className="text-xs text-slate-500 sm:text-sm">{item.label}</p>
+                    <p className="text-2xl font-bold text-white sm:text-3xl">
+                      {item.num}
+                    </p>
+                    <p className="text-xs text-slate-500 sm:text-sm">
+                      {item.label}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -582,7 +611,9 @@ export default function AboutSection() {
                       <p className="text-xs font-semibold text-white sm:text-sm">
                         Verified Experts
                       </p>
-                      <p className="text-[10px] text-slate-400 sm:text-xs">Certified Team</p>
+                      <p className="text-[10px] text-slate-400 sm:text-xs">
+                        Certified Team
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -621,7 +652,9 @@ export default function AboutSection() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Prajapati Enterprise Location"
-                  style={{ filter: "brightness(0.58) contrast(1.18) saturate(0.75)" }}
+                  style={{
+                    filter: "brightness(0.58) contrast(1.18) saturate(0.75)",
+                  }}
                 />
 
                 <div

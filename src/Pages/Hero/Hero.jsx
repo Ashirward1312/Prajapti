@@ -267,7 +267,11 @@ export default function HeroSection() {
         tl.to(imageContainerRef.current, { y: 0, opacity: 1, duration: 0.5 }, 0);
 
         if (textEls?.length) {
-          tl.to(textEls, { y: 0, opacity: 1, duration: 0.38, stagger: 0.06 }, 0.08);
+          tl.to(
+            textEls,
+            { y: 0, opacity: 1, duration: 0.38, stagger: 0.06 },
+            0.08
+          );
         }
 
         tl.to({}, { duration: 2.15 });
@@ -297,7 +301,7 @@ export default function HeroSection() {
       // Desktop/Tablet: proper slide animation
       mm.add("(min-width: 769px)", () => {
         gsap.set(imageContainerRef.current, {
-          xPercent: -120, // little less extreme => better desktop look
+          xPercent: -120,
           scale: 0.88,
           opacity: 0,
           rotation: -1.5,
@@ -329,18 +333,33 @@ export default function HeroSection() {
         );
 
         if (textEls?.length) {
-          tl.to(textEls, { y: 0, opacity: 1, duration: 0.48, stagger: 0.075, ease: "power2.out" }, 0.18);
+          tl.to(
+            textEls,
+            { y: 0, opacity: 1, duration: 0.48, stagger: 0.075, ease: "power2.out" },
+            0.18
+          );
         }
 
         tl.to({}, { duration: 2.55 });
 
         if (textEls?.length) {
-          tl.to(textEls, { y: -14, opacity: 0, duration: 0.3, stagger: 0.03, ease: "power2.in" }, "out");
+          tl.to(
+            textEls,
+            { y: -14, opacity: 0, duration: 0.3, stagger: 0.03, ease: "power2.in" },
+            "out"
+          );
         }
 
         tl.to(
           imageContainerRef.current,
-          { xPercent: 120, scale: 0.88, opacity: 0, rotation: 1.5, duration: 0.9, ease: "power3.in" },
+          {
+            xPercent: 120,
+            scale: 0.88,
+            opacity: 0,
+            rotation: 1.5,
+            duration: 0.9,
+            ease: "power3.in",
+          },
           "out-=0.12"
         );
 
@@ -367,7 +386,7 @@ export default function HeroSection() {
         relative w-full overflow-hidden font-sans select-none box-border
         min-h-screen
         bg-gradient-to-br from-[#020617] via-[#0a192f] to-[#0c2d48]
-        pt-[78px] sm:pt-[86px] lg:pt-[96px]
+        pt-[72px] sm:pt-[80px] lg:pt-[90px]
       "
     >
       {/* Desktop pe zyada bubbles */}
@@ -399,8 +418,8 @@ export default function HeroSection() {
 
       {/* Main */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-14">
-        {/* removed double min-height; now spacing is clean on desktop */}
-        <div className="py-6 sm:py-10 lg:py-12 grid items-center gap-8 lg:gap-10 lg:grid-cols-12">
+        {/* ✅ More UP: top padding almost removed */}
+        <div className="pt-0 pb-6 sm:pt-1 sm:pb-10 lg:pt-2 lg:pb-12 grid items-center gap-8 lg:gap-10 lg:grid-cols-12">
           {/* TEXT */}
           <div
             ref={textContainerRef}
@@ -412,7 +431,6 @@ export default function HeroSection() {
                   className="inline-flex h-1.5 w-1.5 rounded-full"
                   style={{ backgroundColor: cur.accentColor }}
                 />
-                {/* ✅ badge text bigger */}
                 <span
                   className="text-[11px] sm:text-[12px] font-semibold tracking-[2px] uppercase"
                   style={{ color: cur.accentLight }}
@@ -422,7 +440,6 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* ✅ heading bigger */}
             <h1 className="anim-item mt-3 sm:mt-4 text-[1.8rem] sm:text-[2.35rem] md:text-[2.7rem] lg:text-[3.05rem] xl:text-[3.4rem] font-black text-white leading-[1.06] tracking-tight">
               {cur.heading}
               <br />
@@ -436,7 +453,6 @@ export default function HeroSection() {
               </span>
             </h1>
 
-            {/* ✅ subtitle bigger */}
             <p className="anim-item mt-3 text-slate-200/55 text-[13px] sm:text-[14px] lg:text-[15px] leading-relaxed max-w-md mx-auto lg:mx-0">
               {cur.subtitle}
             </p>
@@ -447,7 +463,6 @@ export default function HeroSection() {
               {cur.features.map((f) => (
                 <li
                   key={f}
-                  /* ✅ features text bigger */
                   className="flex items-center gap-2.5 text-[12px] sm:text-[13px] lg:text-[14px] text-slate-200/60"
                 >
                   <span
@@ -473,8 +488,6 @@ export default function HeroSection() {
                 </li>
               ))}
             </ul>
-
-            {/* CTA removed ✅ */}
           </div>
 
           {/* IMAGE + CONTROLS */}
@@ -498,7 +511,7 @@ export default function HeroSection() {
               />
             </div>
 
-            {/* image area height fixed => no ugly empty space */}
+            {/* image area */}
             <div className="relative w-full flex items-center justify-center h-[260px] sm:h-[340px] lg:h-[430px]">
               <div
                 ref={imageContainerRef}
@@ -600,7 +613,6 @@ export default function HeroSection() {
                 />
               </div>
 
-              {/* (optional) slide counter slightly bigger */}
               <span className="text-white/[0.12] text-[11px] font-mono tracking-[3px]">
                 {String(currentIndex + 1).padStart(2, "0")} /{" "}
                 {String(SLIDES.length).padStart(2, "0")}

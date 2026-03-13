@@ -1,5 +1,6 @@
 // src/components/ServicesSection.jsx
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const services = [
   {
@@ -14,7 +15,7 @@ const services = [
     button: "Book Installation",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
       </svg>
     ),
     gradient: "from-blue-500 to-cyan-400",
@@ -41,8 +42,8 @@ const services = [
     button: "Book Repair",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <circle cx="12" cy="12" r="3"/>
-        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        <circle cx="12" cy="12" r="3" />
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
       </svg>
     ),
     gradient: "from-orange-500 to-amber-400",
@@ -54,7 +55,7 @@ const services = [
     btnGradient: "from-orange-500 to-orange-600",
     btnHover: "hover:from-orange-600 hover:to-orange-700",
     checkColor: "text-orange-500",
-    badge: "Repair",
+    badge: "Repair and Replacement",
     badgeBg: "bg-orange-50 text-orange-600 border-orange-100",
   },
   {
@@ -69,7 +70,7 @@ const services = [
     button: "Book AMC",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       </svg>
     ),
     gradient: "from-emerald-500 to-teal-400",
@@ -81,22 +82,22 @@ const services = [
     btnGradient: "from-emerald-500 to-emerald-600",
     btnHover: "hover:from-emerald-600 hover:to-emerald-700",
     checkColor: "text-emerald-500",
-    badge: "AMC",
+    badge: "AMC or LMC",
     badgeBg: "bg-emerald-50 text-emerald-600 border-emerald-100",
   },
   {
     title: "Filter Replacement",
     desc: "Timely replacement of Sediment, Carbon, RO Membrane, and UV lamps for pure water.",
     points: [
-      "High-quality membranes",
-      "Activated carbon filters",
       "Sediment removal",
+      "Activated carbon filters",
+      "High-quality membranes",
       "Post-carbon treatment",
     ],
     button: "Book Replacement",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
       </svg>
     ),
     gradient: "from-violet-500 to-purple-400",
@@ -123,8 +124,8 @@ const services = [
     button: "Book Commercial RO",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <path d="M2 20h20M5 20V8l7-5 7 5v12M9 20v-4a3 3 0 0 1 6 0v4"/>
-        <path d="M9 12h1M14 12h1"/>
+        <path d="M2 20h20M5 20V8l7-5 7 5v12M9 20v-4a3 3 0 0 1 6 0v4" />
+        <path d="M9 12h1M14 12h1" />
       </svg>
     ),
     gradient: "from-sky-500 to-blue-400",
@@ -144,17 +145,16 @@ const services = [
     desc: "Safe uninstallation and reinstallation service when moving to a new home in Raipur.",
     points: [
       "Safe dismantling",
-      "Transport packing",
       "Re-installation",
       "Performance check",
     ],
     button: "Book Shifting",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-        <rect x="1" y="3" width="15" height="13" rx="2"/>
-        <path d="M16 8h4l3 3v5h-7V8z"/>
-        <circle cx="5.5" cy="18.5" r="2.5"/>
-        <circle cx="18.5" cy="18.5" r="2.5"/>
+        <rect x="1" y="3" width="15" height="13" rx="2" />
+        <path d="M16 8h4l3 3v5h-7V8z" />
+        <circle cx="5.5" cy="18.5" r="2.5" />
+        <circle cx="18.5" cy="18.5" r="2.5" />
       </svg>
     ),
     gradient: "from-rose-500 to-pink-400",
@@ -171,10 +171,9 @@ const services = [
   },
 ];
 
-
-
 function useCounter(target, shouldAnimate, duration = 2000) {
   const [count, setCount] = useState(0);
+
   useEffect(() => {
     if (!shouldAnimate) return;
     let start = 0;
@@ -189,11 +188,13 @@ function useCounter(target, shouldAnimate, duration = 2000) {
     }, 16);
     return () => clearInterval(timer);
   }, [shouldAnimate, target, duration]);
+
   return count;
 }
 
 function StatItem({ stat, animate }) {
   const count = useCounter(stat.value, animate);
+
   return (
     <div className="text-center group">
       <div className="text-3xl mb-3 transform group-hover:scale-110 transition-transform duration-300">
@@ -208,7 +209,7 @@ function StatItem({ stat, animate }) {
   );
 }
 
-function ServiceCard({ service, index }) {
+function ServiceCard({ service, index, onCTAClick }) {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef(null);
@@ -223,6 +224,7 @@ function ServiceCard({ service, index }) {
       },
       { threshold: 0.15 }
     );
+
     if (cardRef.current) observer.observe(cardRef.current);
     return () => observer.disconnect();
   }, [index]);
@@ -230,7 +232,9 @@ function ServiceCard({ service, index }) {
   return (
     <div
       ref={cardRef}
-      className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+      className={`transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+      }`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div
@@ -259,7 +263,8 @@ function ServiceCard({ service, index }) {
             ${isHovered ? "opacity-[0.03]" : "opacity-0"}
           `}
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
             backgroundSize: "24px 24px",
           }}
         />
@@ -283,9 +288,6 @@ function ServiceCard({ service, index }) {
           >
             {service.badge}
           </span>
-          {/* <span className="text-slate-200 text-4xl font-black select-none">
-            {String(index + 1).padStart(2, "0")}
-          </span> */}
         </div>
 
         {/* Icon */}
@@ -298,7 +300,6 @@ function ServiceCard({ service, index }) {
         >
           {service.icon}
 
-          {/* Ping effect */}
           <div
             className={`
               absolute inset-0 rounded-xl ${service.iconBg}
@@ -330,10 +331,7 @@ function ServiceCard({ service, index }) {
           {service.points.map((point, i) => (
             <li
               key={i}
-              className={`
-                flex items-center gap-3 text-sm text-slate-600
-                transition-all duration-300
-              `}
+              className="flex items-center gap-3 text-sm text-slate-600 transition-all duration-300"
               style={{
                 transitionDelay: isHovered ? `${i * 60}ms` : "0ms",
                 transform: isHovered ? "translateX(4px)" : "translateX(0)",
@@ -361,6 +359,7 @@ function ServiceCard({ service, index }) {
 
         {/* CTA Button */}
         <button
+          onClick={onCTAClick}
           className={`
             w-full py-3 px-6 rounded-xl font-semibold text-sm text-white
             bg-gradient-to-r ${service.btnGradient} ${service.btnHover}
@@ -396,6 +395,7 @@ function ServiceCard({ service, index }) {
 }
 
 export default function ServicesSection() {
+  const navigate = useNavigate();
   const statsRef = useRef(null);
   const [statsVisible, setStatsVisible] = useState(false);
 
@@ -409,34 +409,46 @@ export default function ServicesSection() {
       },
       { threshold: 0.4 }
     );
+
     if (statsRef.current) observer.observe(statsRef.current);
     return () => observer.disconnect();
   }, []);
 
-  return (
-    <section id="services" className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-blue-50/40">
+  const handleNavigateToContact = () => {
+    navigate("/contact");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
+  return (
+    <section
+      id="services"
+      className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-blue-50/40"
+    >
       {/* Background Decorations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Grid Pattern */}
         <div
           className="absolute inset-0 opacity-[0.025]"
           style={{
-            backgroundImage: `linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)`,
+            backgroundImage:
+              "linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
 
-        {/* Floating Circles */}
         <div className="absolute top-20 left-[10%] w-72 h-72 bg-blue-200/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/2 right-[5%] w-96 h-96 bg-cyan-200/15 rounded-full blur-3xl"
-          style={{ animation: "pulse 4s ease-in-out infinite 1s" }} />
-        <div className="absolute bottom-20 left-[30%] w-64 h-64 bg-violet-200/15 rounded-full blur-3xl"
-          style={{ animation: "pulse 5s ease-in-out infinite 2s" }} />
-        <div className="absolute top-40 right-[30%] w-48 h-48 bg-emerald-200/15 rounded-full blur-3xl"
-          style={{ animation: "pulse 6s ease-in-out infinite 0.5s" }} />
+        <div
+          className="absolute top-1/2 right-[5%] w-96 h-96 bg-cyan-200/15 rounded-full blur-3xl"
+          style={{ animation: "pulse 4s ease-in-out infinite 1s" }}
+        />
+        <div
+          className="absolute bottom-20 left-[30%] w-64 h-64 bg-violet-200/15 rounded-full blur-3xl"
+          style={{ animation: "pulse 5s ease-in-out infinite 2s" }}
+        />
+        <div
+          className="absolute top-40 right-[30%] w-48 h-48 bg-emerald-200/15 rounded-full blur-3xl"
+          style={{ animation: "pulse 6s ease-in-out infinite 0.5s" }}
+        />
 
-        {/* Water drops decoration */}
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
@@ -451,11 +463,8 @@ export default function ServicesSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-5 md:px-8 relative z-10">
-
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
-
-          {/* Top Badge */}
           <div className="inline-flex items-center gap-2 bg-white border border-blue-100 rounded-full px-5 py-2 mb-6 shadow-sm shadow-blue-100/50">
             <div className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
@@ -466,14 +475,12 @@ export default function ServicesSection() {
             </span>
           </div>
 
-          {/* Main Title */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-slate-800 leading-tight mb-5">
             Premium{" "}
             <span className="relative">
               <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-500 bg-clip-text text-transparent">
                 RO Water Purifier
               </span>
-              {/* Underline decoration */}
               <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
                 <path d="M2 8c40-5 80-7 120-6s100 4 176-1" stroke="url(#grad)" strokeWidth="3" strokeLinecap="round" />
                 <defs>
@@ -489,25 +496,24 @@ export default function ServicesSection() {
             <span className="text-slate-700">Services in Raipur</span>
           </h2>
 
-          {/* Divider */}
           <div className="flex items-center justify-center gap-3 my-6">
             <div className="w-12 h-[2px] rounded bg-gradient-to-r from-transparent to-blue-400" />
             <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 shadow-md shadow-blue-300/50" />
             <div className="w-12 h-[2px] rounded bg-gradient-to-l from-transparent to-blue-400" />
           </div>
-
-        
-
         </div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
           {services.map((service, index) => (
-            <ServiceCard key={index} service={service} index={index} />
+            <ServiceCard
+              key={index}
+              service={service}
+              index={index}
+              onCTAClick={handleNavigateToContact}
+            />
           ))}
         </div>
-
-      
       </div>
     </section>
   );

@@ -10,10 +10,10 @@ import {
 import gsap from "gsap";
 
 import img1 from "../img/bg1.png";
-import img2 from "../img/bg2.png";
+import img2 from "../img/bm_elite.png";
 import img3 from "../img/bg3.png";
 import img4 from "../img/bg4.png";
-import img5 from "../img/bg5.png";
+import img5 from "../img/havells.png";
 
 const SLIDES = [
   {
@@ -412,8 +412,9 @@ export default function HeroSection() {
                   className="inline-flex h-1.5 w-1.5 rounded-full"
                   style={{ backgroundColor: cur.accentColor }}
                 />
+                {/* ✅ badge text bigger */}
                 <span
-                  className="text-[10px] font-semibold tracking-[2px] uppercase"
+                  className="text-[11px] sm:text-[12px] font-semibold tracking-[2px] uppercase"
                   style={{ color: cur.accentLight }}
                 >
                   {cur.badge}
@@ -421,7 +422,8 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <h1 className="anim-item mt-3 sm:mt-4 text-[1.55rem] sm:text-[2.1rem] md:text-[2.45rem] lg:text-[2.85rem] xl:text-[3.15rem] font-black text-white leading-[1.08] tracking-tight">
+            {/* ✅ heading bigger */}
+            <h1 className="anim-item mt-3 sm:mt-4 text-[1.8rem] sm:text-[2.35rem] md:text-[2.7rem] lg:text-[3.05rem] xl:text-[3.4rem] font-black text-white leading-[1.06] tracking-tight">
               {cur.heading}
               <br />
               <span
@@ -434,7 +436,8 @@ export default function HeroSection() {
               </span>
             </h1>
 
-            <p className="anim-item mt-3 text-slate-200/55 text-[12px] sm:text-[13px] lg:text-[14px] leading-relaxed max-w-md mx-auto lg:mx-0">
+            {/* ✅ subtitle bigger */}
+            <p className="anim-item mt-3 text-slate-200/55 text-[13px] sm:text-[14px] lg:text-[15px] leading-relaxed max-w-md mx-auto lg:mx-0">
               {cur.subtitle}
             </p>
 
@@ -444,7 +447,8 @@ export default function HeroSection() {
               {cur.features.map((f) => (
                 <li
                   key={f}
-                  className="flex items-center gap-2.5 text-[11px] sm:text-[12px] lg:text-[13px] text-slate-200/60"
+                  /* ✅ features text bigger */
+                  className="flex items-center gap-2.5 text-[12px] sm:text-[13px] lg:text-[14px] text-slate-200/60"
                 >
                   <span
                     className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
@@ -596,7 +600,8 @@ export default function HeroSection() {
                 />
               </div>
 
-              <span className="text-white/[0.12] text-[10px] font-mono tracking-[3px]">
+              {/* (optional) slide counter slightly bigger */}
+              <span className="text-white/[0.12] text-[11px] font-mono tracking-[3px]">
                 {String(currentIndex + 1).padStart(2, "0")} /{" "}
                 {String(SLIDES.length).padStart(2, "0")}
               </span>

@@ -3,6 +3,13 @@ import { useMemo, useState } from "react";
 
 const PHONE = "+918871863773";
 const PHONE_DISPLAY = "+91 88718 63773";
+
+const PHONE_2 = "+919630352226";
+const PHONE_2_DISPLAY = "+91 96303 52226";
+
+const PHONE_3 = "+917879727388";
+const PHONE_3_DISPLAY = "+91 78797 27388";
+
 const WHATSAPP_NUMBER = "918871863773";
 
 const LOCATION = {
@@ -15,14 +22,14 @@ const LOCATION = {
 };
 
 /* ──────────────────────────────────────────
-   BUBBLES (Desktop only for smoothness)
+   BUBBLES
    ────────────────────────────────────────── */
 function Bubbles({ enabled = true }) {
   const bubbles = useMemo(() => {
     const colors = [
-      "rgba(56,189,248,0.18)", // sky
-      "rgba(34,211,238,0.14)", // cyan
-      "rgba(148,163,184,0.10)", // slate
+      "rgba(56,189,248,0.18)",
+      "rgba(34,211,238,0.14)",
+      "rgba(148,163,184,0.10)",
     ];
 
     return Array.from({ length: 22 }, (_, i) => ({
@@ -97,10 +104,8 @@ export default function LetsConnect() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#020617] via-[#071A2F] to-[#0B2B44] text-white">
-      {/* spacing for fixed header */}
       <div className="pt-[78px] sm:pt-[86px] lg:pt-[96px]" />
 
-      {/* background layers */}
       <Bubbles enabled />
 
       <div className="pointer-events-none absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-sky-500/10 blur-[140px]" />
@@ -114,41 +119,57 @@ export default function LetsConnect() {
         }}
       />
 
-      {/* content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 sm:pb-18 lg:pb-20">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pb-14 sm:px-6 sm:pb-18 lg:px-8 lg:pb-20">
         {/* HERO */}
-        <section className="pt-8 sm:pt-10 lg:pt-12 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-[11px] font-semibold tracking-[2px] uppercase text-sky-200">
+        <section className="pt-8 text-center sm:pt-10 lg:pt-12">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-[11px] font-semibold uppercase tracking-[2px] text-sky-200">
             <span className="h-2 w-2 rounded-full bg-sky-400 shadow-[0_0_16px_rgba(56,189,248,.45)]" />
             Let&apos;s Connect
           </div>
 
-          <h1 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+          <h1 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
             Quick RO Service Booking in{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">
+            <span className="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">
               Raipur
             </span>
           </h1>
 
-          <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
             Call or WhatsApp — share your RO brand, issue and location. We’ll
             respond fast.
           </p>
 
-          <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3">
+          {/* TOP: 3 numbers only here */}
+          <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <a
               href={`tel:${PHONE}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-500 px-6 py-3.5 text-white font-semibold shadow-lg shadow-sky-500/20 hover:shadow-sky-500/35 hover:scale-[1.01] active:scale-[0.98] transition-all"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-500 px-6 py-3.5 font-semibold text-white shadow-lg shadow-sky-500/20 transition-all hover:scale-[1.01] hover:shadow-sky-500/35 active:scale-[0.98]"
             >
               <PhoneIcon className="h-5 w-5" />
-              Call {PHONE_DISPLAY}
+              {PHONE_DISPLAY}
+            </a>
+
+            <a
+              href={`tel:${PHONE_2}`}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-6 py-3.5 font-semibold text-slate-100 transition hover:bg-white/[0.10] active:scale-[0.98]"
+            >
+              <PhoneIcon className="h-5 w-5 text-sky-300" />
+              {PHONE_2_DISPLAY}
+            </a>
+
+            <a
+              href={`tel:${PHONE_3}`}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-6 py-3.5 font-semibold text-slate-100 transition hover:bg-white/[0.10] active:scale-[0.98]"
+            >
+              <PhoneIcon className="h-5 w-5 text-sky-300" />
+              {PHONE_3_DISPLAY}
             </a>
 
             <a
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl border border-emerald-400/20 bg-emerald-500/[0.08] px-6 py-3.5 text-emerald-200 font-semibold hover:bg-emerald-500/[0.12] hover:border-emerald-400/30 active:scale-[0.98] transition-all"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-emerald-400/20 bg-emerald-500/[0.08] px-6 py-3.5 font-semibold text-emerald-200 transition-all hover:border-emerald-400/30 hover:bg-emerald-500/[0.12] active:scale-[0.98]"
             >
               <WhatsAppIcon className="h-5 w-5 text-emerald-300" />
               WhatsApp Now
@@ -157,25 +178,26 @@ export default function LetsConnect() {
         </section>
 
         {/* MAIN GRID */}
-        <section className="mt-10 sm:mt-12 lg:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-7">
-          {/* LEFT: Contact cards + map */}
-          <div className="lg:col-span-5 space-y-4">
+        <section className="mt-10 grid grid-cols-1 gap-5 sm:mt-12 lg:mt-14 lg:grid-cols-12 lg:gap-7">
+          {/* LEFT */}
+          <div className="space-y-4 lg:col-span-5">
+            {/* CALL US: only one number */}
             <GlassCard>
               <div className="flex items-start gap-3">
                 <IconBox tone="sky">
                   <PhoneIcon className="h-5 w-5" />
                 </IconBox>
-                <div className="min-w-0">
+                <div className="min-w-0 w-full">
                   <div className="text-sm font-extrabold text-white">
                     Call Us
                   </div>
-                  <div className="text-xs text-slate-300 mt-0.5">
+                  <div className="mt-0.5 text-xs text-slate-300">
                     Quick booking & support
                   </div>
 
                   <a
                     href={`tel:${PHONE}`}
-                    className="mt-3 inline-flex w-full items-center justify-center rounded-xl bg-white/[0.06] hover:bg-white/[0.10] border border-white/10 px-4 py-3 text-sm font-semibold text-sky-200 transition"
+                    className="mt-3 inline-flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-sky-200 transition hover:bg-white/[0.10]"
                   >
                     {PHONE_DISPLAY}
                   </a>
@@ -188,11 +210,11 @@ export default function LetsConnect() {
                 <IconBox tone="emerald">
                   <WhatsAppIcon className="h-5 w-5" />
                 </IconBox>
-                <div className="min-w-0">
+                <div className="min-w-0 w-full">
                   <div className="text-sm font-extrabold text-white">
                     WhatsApp
                   </div>
-                  <div className="text-xs text-slate-300 mt-0.5">
+                  <div className="mt-0.5 text-xs text-slate-300">
                     Share brand, issue & area
                   </div>
 
@@ -200,7 +222,7 @@ export default function LetsConnect() {
                     href={waLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 inline-flex w-full items-center justify-center rounded-xl bg-emerald-500/[0.10] hover:bg-emerald-500/[0.14] border border-emerald-400/20 px-4 py-3 text-sm font-semibold text-emerald-200 transition"
+                    className="mt-3 inline-flex w-full items-center justify-center rounded-xl border border-emerald-400/20 bg-emerald-500/[0.10] px-4 py-3 text-sm font-semibold text-emerald-200 transition hover:bg-emerald-500/[0.14]"
                   >
                     Open WhatsApp
                   </a>
@@ -208,9 +230,8 @@ export default function LetsConnect() {
               </div>
             </GlassCard>
 
-            {/* Location + Map (kept, baaki extra blocks hata diye) */}
-            <div className="rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl overflow-hidden">
-              <div className="p-5 sm:p-6 border-b border-white/10">
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl">
+              <div className="border-b border-white/10 p-5 sm:p-6">
                 <div className="flex items-start gap-3">
                   <IconBox tone="sky">
                     <PinIcon className="h-5 w-5" />
@@ -219,7 +240,7 @@ export default function LetsConnect() {
                     <div className="text-sm font-extrabold text-white">
                       {LOCATION.title}
                     </div>
-                    <div className="text-xs text-slate-300 mt-1 leading-relaxed">
+                    <div className="mt-1 text-xs leading-relaxed text-slate-300">
                       {LOCATION.address}
                     </div>
 
@@ -227,7 +248,7 @@ export default function LetsConnect() {
                       href={LOCATION.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center justify-center w-full rounded-xl border border-sky-400/20 bg-sky-500/10 hover:bg-sky-500/14 px-4 py-3 text-sm font-semibold text-sky-200 transition"
+                      className="mt-3 inline-flex w-full items-center justify-center rounded-xl border border-sky-400/20 bg-sky-500/10 px-4 py-3 text-sm font-semibold text-sky-200 transition hover:bg-sky-500/14"
                     >
                       Get Directions
                     </a>
@@ -238,7 +259,7 @@ export default function LetsConnect() {
               <div className="relative h-[220px] sm:h-[250px]">
                 <iframe
                   src={LOCATION.embedUrl}
-                  className="w-full h-full border-0"
+                  className="h-full w-full border-0"
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -248,10 +269,10 @@ export default function LetsConnect() {
             </div>
           </div>
 
-          {/* RIGHT: Form */}
+          {/* RIGHT */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-white/10 bg-white/[0.05] backdrop-blur-xl p-6 sm:p-8 shadow-[0_30px_90px_-70px_rgba(56,189,248,.55)]">
-              <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+            <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 shadow-[0_30px_90px_-70px_rgba(56,189,248,.55)] backdrop-blur-xl sm:p-8">
+              <h2 className="text-xl font-extrabold text-white sm:text-2xl">
                 Send a Message
               </h2>
               <p className="mt-2 text-sm text-slate-300">
@@ -259,7 +280,7 @@ export default function LetsConnect() {
               </p>
 
               <form onSubmit={onSubmit} className="mt-6 space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <FieldDark
                     label="Your Name"
                     name="name"
@@ -287,7 +308,7 @@ export default function LetsConnect() {
                 />
 
                 <div>
-                  <label className="block text-xs font-bold tracking-wide text-slate-200 mb-2">
+                  <label className="mb-2 block text-xs font-bold tracking-wide text-slate-200">
                     Problem / Requirement
                   </label>
                   <textarea
@@ -296,15 +317,15 @@ export default function LetsConnect() {
                     onChange={onChange}
                     rows={5}
                     placeholder="e.g. Low flow, bad taste, leakage, filter change..."
-                    className="w-full rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 outline-none focus:ring-4 focus:ring-sky-500/15 focus:border-sky-400/40 transition resize-none"
+                    className="w-full resize-none rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-400 focus:border-sky-400/40 focus:ring-4 focus:ring-sky-500/15"
                     required
                   />
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                <div className="grid grid-cols-1 gap-3 pt-1 sm:grid-cols-2">
                   <button
                     type="submit"
-                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-500 px-6 py-3.5 text-white font-semibold shadow-lg shadow-sky-500/20 hover:shadow-sky-500/35 hover:scale-[1.01] active:scale-[0.98] transition-all"
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-500 px-6 py-3.5 font-semibold text-white shadow-lg shadow-sky-500/20 transition-all hover:scale-[1.01] hover:shadow-sky-500/35 active:scale-[0.98]"
                   >
                     <SendIcon className="h-5 w-5" />
                     Send on WhatsApp
@@ -312,14 +333,14 @@ export default function LetsConnect() {
 
                   <a
                     href={`tel:${PHONE}`}
-                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] hover:bg-white/[0.10] px-6 py-3.5 text-slate-100 font-semibold transition active:scale-[0.98]"
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-6 py-3.5 font-semibold text-slate-100 transition hover:bg-white/[0.10] active:scale-[0.98]"
                   >
                     <PhoneIcon className="h-5 w-5 text-sky-300" />
                     Call Instead
                   </a>
                 </div>
 
-                <p className="text-[11px] text-slate-400 text-center pt-1">
+                <p className="pt-1 text-center text-[11px] text-slate-400">
                   Details are used only for service booking.
                 </p>
               </form>
@@ -328,7 +349,6 @@ export default function LetsConnect() {
         </section>
       </div>
 
-      {/* keyframes */}
       <style>{`
         @keyframes bubbleFloat {
           0% { transform: translateY(0) scale(0); opacity: 0; }
@@ -345,7 +365,7 @@ export default function LetsConnect() {
    ────────────────────────────────────────── */
 function GlassCard({ children }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-5 sm:p-6 shadow-[0_22px_70px_-60px_rgba(15,23,42,.8)]">
+    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 shadow-[0_22px_70px_-60px_rgba(15,23,42,.8)] backdrop-blur-xl sm:p-6">
       {children}
     </div>
   );
@@ -369,19 +389,19 @@ function IconBox({ children, tone = "sky" }) {
 function FieldDark({ label, ...props }) {
   return (
     <div>
-      <label className="block text-xs font-bold tracking-wide text-slate-200 mb-2">
+      <label className="mb-2 block text-xs font-bold tracking-wide text-slate-200">
         {label}
       </label>
       <input
         {...props}
-        className="w-full rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 outline-none focus:ring-4 focus:ring-sky-500/15 focus:border-sky-400/40 transition"
+        className="w-full rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-400 focus:border-sky-400/40 focus:ring-4 focus:ring-sky-500/15"
       />
     </div>
   );
 }
 
 /* ──────────────────────────────────────────
-   Icons (no extra library)
+   Icons
    ────────────────────────────────────────── */
 function PhoneIcon({ className }) {
   return (

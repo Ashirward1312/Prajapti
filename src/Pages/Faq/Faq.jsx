@@ -15,12 +15,12 @@ const faqs = [
   },
   {
     q: "When should I replace filters and membrane?",
-    a: "Sediment & Carbon: Every 6–8 months\nRO Membrane: Every 18–24 months\nUV Lamp (if present): Every 12 months\n(Depends on water TDS and daily usage)",
+    a: "Sediment & Carbon: Every 12 months or 6000 liters \nRO Membrane: Every 12 months or 6000 liters\nUV Lamp (if present): Every 5000 hours or any technical error \n(Depends on water TDS and daily usage)",
     icon: "🔄",
   },
   {
     q: "What does the Annual Maintenance Contract (AMC) cover?",
-    a: "4 scheduled services per year, free minor repairs, filter replacements (in select plans), priority support, and timely reminders.",
+    a: "4 scheduled services per year, free minor or major repairs (depends on selected plan) , filter replacements (in select plans), priority support, and timely reminders.",
     icon: "📋",
   },
   {
@@ -38,11 +38,7 @@ const faqs = [
     a: "3–12 months warranty on replaced spare parts\n30 days service guarantee on labor\nEverything clearly mentioned on your job card",
     icon: "🛡️",
   },
-  {
-    q: "What is the ideal TDS level for drinking water?",
-    a: "80–150 ppm is considered ideal. Below 50 ppm lacks minerals; above 300 ppm can affect taste and health over time.",
-    icon: "📊",
-  },
+  
   {
     q: "Can we reuse RO waste water?",
     a: "Absolutely. Use it for mopping, gardening, toilet flushing, car washing, or even as pre-filter water. We also install zero-waste systems on request.",
@@ -50,7 +46,7 @@ const faqs = [
   },
   {
     q: "Which RO is best for my home?",
-    a: "We do a free water test first (TDS, hardness, iron, pH), then recommend the perfect model — RO+UV+UF+TDS Controller+Alkaline or Copper, exactly suited to your water.",
+    a: "We do a free water test first (TDS, hardness), then recommend the perfect product — RO+UV+UF+TDS Controller+Alkaline or Copper, exactly suited to your water.",
     icon: "🏠",
   },
 ];

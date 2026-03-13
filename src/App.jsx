@@ -8,7 +8,9 @@ import Why from "./Pages/Why/Why";
 import Faq from "./Pages/Faq/Faq";
 import Brand from "./Pages/Brands/Brands";
 import Contact from "./Pages/Contact/Contact";
+import Product from "./Pages/Product/Product";
 import Footer from "./Pages/Footer/Footer";
+import FloatingWhatsApp from "./Pages/Whatsappfloating/Whatsappfloating";
 
 import ScrollToTop from "./Pages/Footer/Scrolltotop";
 
@@ -52,11 +54,15 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/product" element={<Product />} />
+
         </Routes>
       </main>
 
       {/* Footer har page me */}
       <Footer />
+      {/* Floating WhatsApp button */}
+      <FloatingWhatsApp />
     </div>
   );
 }

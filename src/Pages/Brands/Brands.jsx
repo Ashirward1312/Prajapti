@@ -6,22 +6,22 @@ import filterImg from "../img/1.png";
    BRANDS DATA
    ────────────────────────────────────────── */
 const BRANDS = [
+  { name: "Blue Mount", popular: true },
+
   { name: "Aquaguard", popular: true },
   { name: "Kent", popular: true },
   { name: "Livpure", popular: true },
   { name: "Havells", popular: true },
-  { name: "LG", popular: false },
+  { name: "Blue Star", popular: false },
   { name: "Nasaka", popular: false },
   { name: "Eurotouch", popular: false },
   { name: "Eurotech", popular: false },
-  { name: "Oliver International", popular: false },
   { name: "Aquasafe", popular: false },
   { name: "Aquagrand", popular: false },
   { name: "Pureit", popular: true },
   { name: "Blue Star", popular: false },
-  { name: "AO Smith", popular: true },
-  { name: "Tata Swach", popular: false },
-  { name: "Whirlpool", popular: false },
+  { name: "Others RO", popular: true },
+
 ];
 
 /* ──────────────────────────────────────────
@@ -39,7 +39,7 @@ const SERVICE_AREAS = {
       "Pachpedi Naka", "Fafadih", "Byron Bazar", "Vidhan Sabha Road",
       "Avanti Vihar", "Khamardih", "Bhanpuri", "Birgaon", "Raipura",
       "Changurabhata", "Santoshi Nagar", "Mathpuraina", "Amlidih",
-      "Shanti Nagar", "Amanaka",
+      "Shanti Nagar", "Amanaka","Siltara","Amleshwar",
     ],
   },
   nayaRaipur: {
@@ -157,9 +157,8 @@ function useInViewOnce(ref, options = { threshold: 0.08 }) {
 function StatCard({ icon, value, label, delay, isVisible }) {
   return (
     <div
-      className={`flex flex-col items-center p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm transition-all duration-600 ${
-        isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-95"
-      }`}
+      className={`flex flex-col items-center p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm transition-all duration-600 ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-95"
+        }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       <span className="text-2xl mb-1">{icon}</span>
@@ -175,9 +174,8 @@ function StatCard({ icon, value, label, delay, isVisible }) {
 function BrandCard({ brand, index, isVisible }) {
   return (
     <div
-      className={`transition-all duration-500 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      }`}
+      className={`transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
       style={{ transitionDelay: `${index * 30}ms` }}
     >
       <div className="group relative flex items-center gap-3 rounded-xl border border-slate-200/80 bg-white px-4 py-3.5 shadow-sm hover:shadow-md hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300">
@@ -262,29 +260,25 @@ function AreaSection({
 
   return (
     <div
-      className={`transition-all duration-500 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      }`}
+      className={`transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div
-        className={`rounded-2xl border bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 ${
-          isExpanded ? `${colors.border} ring-1 ring-${region.color}-100` : "border-slate-200/80"
-        }`}
+        className={`rounded-2xl border bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 ${isExpanded ? `${colors.border} ring-1 ring-${region.color}-100` : "border-slate-200/80"
+          }`}
       >
         {/* Header */}
         <button
           type="button"
           onClick={() => onToggle(regionKey)}
-          className={`w-full flex items-center justify-between gap-3 px-5 py-4 transition cursor-pointer ${
-            isExpanded ? colors.headerBg : "bg-slate-50/50 hover:bg-slate-100/60"
-          }`}
+          className={`w-full flex items-center justify-between gap-3 px-5 py-4 transition cursor-pointer ${isExpanded ? colors.headerBg : "bg-slate-50/50 hover:bg-slate-100/60"
+            }`}
         >
           <div className="flex items-center gap-3.5">
             <div
-              className={`h-11 w-11 rounded-xl flex items-center justify-center text-2xl ${
-                isExpanded ? colors.bg : "bg-white"
-              } border ${isExpanded ? colors.border : "border-slate-200"} transition-all duration-300`}
+              className={`h-11 w-11 rounded-xl flex items-center justify-center text-2xl ${isExpanded ? colors.bg : "bg-white"
+                } border ${isExpanded ? colors.border : "border-slate-200"} transition-all duration-300`}
             >
               {region.icon}
             </div>
@@ -302,16 +296,14 @@ function AreaSection({
           </div>
 
           <div
-            className={`h-8 w-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-              isExpanded
+            className={`h-8 w-8 rounded-full flex items-center justify-center transition-all duration-300 ${isExpanded
                 ? `${colors.bg} ${colors.border} border`
                 : "bg-white border border-slate-200"
-            } ${isExpanded ? "rotate-180" : ""}`}
+              } ${isExpanded ? "rotate-180" : ""}`}
           >
             <svg
-              className={`w-4 h-4 transition-colors ${
-                isExpanded ? colors.text : "text-slate-500"
-              }`}
+              className={`w-4 h-4 transition-colors ${isExpanded ? colors.text : "text-slate-500"
+                }`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -432,9 +424,8 @@ export default function ServiceAreas() {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         {/* ── Header ── */}
         <div
-          className={`text-center mb-12 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`text-center mb-12 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
           <div className="inline-flex items-center gap-2 bg-sky-50 border border-sky-200 rounded-full px-4 py-1.5 mb-5">
             <span className="w-2 h-2 bg-sky-500 rounded-full animate-pulse" />
@@ -460,9 +451,8 @@ export default function ServiceAreas() {
 
         {/* ── Brands Section ── */}
         <div
-          className={`mb-16 transition-all duration-700 delay-200 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
+          className={`mb-16 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
         >
           <div className="flex items-center justify-between gap-3 flex-wrap mb-5">
             <div className="flex items-center gap-3">
@@ -490,7 +480,7 @@ export default function ServiceAreas() {
             ))}
           </div>
 
-    
+
         </div>
 
         {/* ── Divider ── */}
@@ -507,9 +497,8 @@ export default function ServiceAreas() {
 
         {/* ── Service Areas ── */}
         <div
-          className={`transition-all duration-700 delay-300 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
+          className={`transition-all duration-700 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
         >
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-full px-4 py-1.5 mb-5">
@@ -552,9 +541,8 @@ export default function ServiceAreas() {
 
           {/* Bottom CTA */}
           <div
-            className={`mt-10 text-center transition-all duration-700 delay-500 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
+            className={`mt-10 text-center transition-all duration-700 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
           >
             <div className="inline-flex flex-col sm:flex-row items-center gap-3 bg-gradient-to-r from-sky-50 via-white to-sky-50 border border-sky-200 rounded-2xl px-6 py-4 shadow-sm">
               <div className="flex items-center gap-2">
